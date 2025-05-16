@@ -26,7 +26,7 @@ model_list = [
     {"model_name": "meta-llama/Llama-3.3-70B-Instruct", "api_key": HF_API_KEY },
     {"model_name": "deepseek-ai/DeepSeek-R1", "api_key": HF_API_KEY},
     {"model_name": "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B", "api_key": HF_API_KEY},
-    {"model_name": "gemini-2.0-flash", "api_key": GOOGLE_API_KEY},
+    {"model_name": "models/gemini-2.5-flash-preview-04-17", "api_key": GOOGLE_API_KEY},
     {"model_name": "gemini-2.5-pro-exp-03-25", "api_key": GOOGLE_API_KEY},
     {"model_name": "gemma3:1b"}, #локальная модель
     {"model_name": "deepseek-r1:1.5b"}, #локальная модель

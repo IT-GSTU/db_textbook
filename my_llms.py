@@ -32,7 +32,7 @@ def get_llm(model_name, api_key, **kwargs):
         config.update(kwargs)
         return ChatOpenAI(model=model_name, **config)
 
-    elif model_name in ["gemini-2.5-pro-exp-03-25","gemini-2.0-flash"]:
+    elif model_name in ["gemini-2.5-pro-exp-03-25","models/gemini-2.5-flash-preview-04-17"]:
         # Для ChatGoogleGenerativeAI общие настройки не применимы
         return ChatGoogleGenerativeAI(
             model=model_name,

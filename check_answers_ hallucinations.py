@@ -21,10 +21,10 @@ file_name="qwen_qwq-32b_free_book_0_log"
 file_name_json=media + file_name+".json"
 
 # сравнение с эталонным файлом
-chek=False
+check=False
 
 # загрузка эталонного файла и настройки клиента
-if chek:
+if check:
     client = genai.Client(api_key=os.environ.get("GOOGLE_API_KEY"))
     llm_model = "gemini-2.5-pro-exp-03-25"
     media_for_etalon = "books/"  # Или укажите другой путь, например, Path("./data")
@@ -36,7 +36,7 @@ if chek:
 # Выбор LLM для проверки ответов
 # Список LLM
 model_list = [
-    {"model_name": "gemini-2.0-flash", "api_key": GOOGLE_API_KEY},
+    {"model_name": "models/gemini-2.5-flash-preview-04-17", "api_key": GOOGLE_API_KEY},
     {"model_name": "gemini-2.5-pro-exp-03-25", "api_key": GOOGLE_API_KEY},   
     {"model_name": "deepseek-chat", "api_key": DEEPSEEK_API_KEY},
     {"model_name": "deepseek-reasoner", "api_key": DEEPSEEK_API_KEY},
@@ -57,7 +57,7 @@ apy_key=model_list[number].get("api_key")
 review_llm = get_llm(review_llm_model_name, apy_key)
 
 # имя файла для сохранения результатов
-if chek:
+if check:
     model_name=llm_model
 else:
     model_name=review_llm_model_name
@@ -84,9 +84,9 @@ initial_prompt = """
 
     Список вопросов: {questions}
 
-    Список номеров вопросов на которые можно получить полные ответы из содержания прилагаемого pdf файла:
-    Список номеров вопросов на которые нельзя получить полные ответы из содержания прилагаемого pdf файла:
-    Список номеров вопросов на которые можно частично получить ответы из содержания прилагаемого pdf файла:
+    Список номеров вопросов, на которые можно получить полные ответы из содержания прилагаемого pdf файла:
+    Список номеров вопросов, на которые нельзя получить полные ответы из содержания прилагаемого pdf файла:
+    Список номеров вопросов, на которые можно частично получить ответы из содержания прилагаемого pdf файла:
   """
 
 # Промпт для проверки каждого вопроса и ответа на соответсвие инфоомации в эалонном файле
@@ -175,7 +175,7 @@ def ensure_json_structure(filename):
             file.write(content)
 
 # Оценка вопросов
-if (chek and double_check):
+if (check and double_check):
     formatted_prompt = initial_prompt.format(questions=questions)
     feedback = client.models.generate_content(
             model=llm_model,
@@ -193,7 +193,7 @@ with open(file_name_json, 'r', encoding='utf-8') as file:
 
 # Преобразование данных в табличный вид (DataFrame)
 df = pd.DataFrame(data)
-if chek:
+if check:
     df['check_grade'] = ""  
     df['check_feedback'] = ""  
 if double_check:
@@ -206,7 +206,7 @@ for i in indices:
     if df.at[i, 'role'] == 'finalizer':
         question=df.at[i, 'question']
         answer=df.at[i,"final_answer"]
-        if chek:
+        if check:
             formatted_prompt = check_prompt_pdf.format(question=question, answer=answer)
             feedback = client.models.generate_content(
                 model=llm_model,
