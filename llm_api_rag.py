@@ -22,34 +22,43 @@ if not HF_API_KEY or not GOOGLE_API_KEY or not DEEPSEEK_API_KEY or not OPENROUTE
     raise ValueError("Необходимо установить все переменные окружения: HF_API_KEY, GOOGLE_API_KEY, DEEPSEEK_API_KEY, OPENROUTER_API_KEY")
 
 # Список LLM
-
 model_list = [
     {"model_name": "meta-llama/Llama-3.3-70B-Instruct", "api_key": HF_API_KEY },
     {"model_name": "deepseek-ai/DeepSeek-R1", "api_key": HF_API_KEY},
     {"model_name": "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B", "api_key": HF_API_KEY},
     {"model_name": "gemini-2.0-flash", "api_key": GOOGLE_API_KEY},
+    {"model_name": "gemini-2.5-pro-exp-03-25", "api_key": GOOGLE_API_KEY},
+    {"model_name": "gemma3:1b"}, #локальная модель
+    {"model_name": "deepseek-r1:1.5b"}, #локальная модель
+    {"model_name": "deepseek-r1:8b"}, #локальная модель
+    {"model_name": "qwen2.5:3b"}, #локальная модель        
     {"model_name": "deepseek-chat", "api_key": DEEPSEEK_API_KEY},
     {"model_name": "deepseek-reasoner", "api_key": DEEPSEEK_API_KEY},
     {"model_name": "deepseek/deepseek-chat", "api_key": OPENROUTER_API_KEY},
+    {"model_name": "deepseek/deepseek-chat-v3-0324:free", "api_key": OPENROUTER_API_KEY},
     {"model_name": "deepseek/deepseek-r1-distill-llama-70b:free", "api_key": OPENROUTER_API_KEY},
-    {"model_name": "deepseek/deepseek-r1:free", "api_key": OPENROUTER_API_KEY}
+    {"model_name": "deepseek/deepseek-r1:free", "api_key": OPENROUTER_API_KEY},
+    {"model_name": "google/gemini-2.5-pro-exp-03-25:free", "api_key": OPENROUTER_API_KEY},
+    {"model_name": "google/gemini-2.0-pro-exp-02-05:free", "api_key": OPENROUTER_API_KEY},
+    {"model_name": "qwen/qwq-32b:free", "api_key": OPENROUTER_API_KEY},
+    {"model_name": "google/gemma-3-27b-it:free", "api_key": OPENROUTER_API_KEY},
 ]
 
 # Выбор LLM
 
-number=3 # номер позиции в списке, отсчет с 0
+number=9 # номер позиции в списке, отсчет с 0
 model_name = model_list[number].get("model_name")  # Выбор модели
 apy_key=model_list[number].get("api_key")
 llm = get_llm(model_name, apy_key)
 
 # Выбор LLM для rag
-number=3 # номер позиции в списке, отсчет с 0
+number=9 # номер позиции в списке, отсчет с 0
 rag_model_name = model_list[number].get("model_name")  # Выбор модели
 apy_key=model_list[number].get("api_key")
 rag_llm = get_llm(rag_model_name, apy_key)
 
 # Выбор LLM для проверки ответов
-number=8 # номер позиции в списке, отсчет с 0
+number=10 # номер позиции в списке, отсчет с 0
 review_llm_model_name = model_list[number].get("model_name")  # Выбор модели
 apy_key=model_list[number].get("api_key")
 review_llm = get_llm(review_llm_model_name, apy_key)

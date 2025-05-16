@@ -23,23 +23,34 @@ model_list = [
     {"model_name": "deepseek-ai/DeepSeek-R1", "api_key": HF_API_KEY},
     {"model_name": "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B", "api_key": HF_API_KEY},
     {"model_name": "gemini-2.0-flash", "api_key": GOOGLE_API_KEY},
+    {"model_name": "gemini-2.5-pro-exp-03-25", "api_key": GOOGLE_API_KEY},
+    {"model_name": "gemma3:1b"}, #локальная модель
+    {"model_name": "deepseek-r1:1.5b"}, #локальная модель
+    {"model_name": "deepseek-r1:8b"}, #локальная модель
+    {"model_name": "qwen2.5:3b"}, #локальная модель        
     {"model_name": "deepseek-chat", "api_key": DEEPSEEK_API_KEY},
     {"model_name": "deepseek-reasoner", "api_key": DEEPSEEK_API_KEY},
     {"model_name": "deepseek/deepseek-chat", "api_key": OPENROUTER_API_KEY},
+    {"model_name": "deepseek/deepseek-chat-v3-0324:free", "api_key": OPENROUTER_API_KEY},
     {"model_name": "deepseek/deepseek-r1-distill-llama-70b:free", "api_key": OPENROUTER_API_KEY},
-    {"model_name": "deepseek/deepseek-r1:free", "api_key": OPENROUTER_API_KEY}
+    {"model_name": "deepseek/deepseek-r1:free", "api_key": OPENROUTER_API_KEY},
+    {"model_name": "google/gemini-2.5-pro-exp-03-25:free", "api_key": OPENROUTER_API_KEY},
+    {"model_name": "google/gemini-2.0-pro-exp-02-05:free", "api_key": OPENROUTER_API_KEY},
+    {"model_name": "qwen/qwq-32b:free", "api_key": OPENROUTER_API_KEY},
+    {"model_name": "google/gemma-3-27b-it:free", "api_key": OPENROUTER_API_KEY},
 ]
+
 
 # Выбор LLM
 
-number=3 # номер позиции в списке, отсчет с 0
+number=4 # номер позиции в списке, отсчет с 0
 model_name = model_list[number].get("model_name")  # Выбор модели
 apy_key=model_list[number].get("api_key")
 llm = get_llm(model_name, apy_key)
 
 
 # считывание теоретических данных из json файла
-json_filename="results/gemini-2.0-flash-exp_log_full.json"
+json_filename="results/gemini_log_full.json"
 with open(json_filename, 'r', encoding='utf-8') as file:
     # Загружаем данные из JSON файла
     data = json.load(file)
