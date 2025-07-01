@@ -32,7 +32,7 @@ def get_llm(model_name, api_key, **kwargs):
         config.update(kwargs)
         return ChatOpenAI(model=model_name, **config)
 
-    elif model_name in ["gemini-2.5-pro-exp-03-25","models/gemini-2.5-flash-preview-04-17"]:
+    elif model_name in ["models/gemini-2.5"]:
         # Для ChatGoogleGenerativeAI общие настройки не применимы
         return ChatGoogleGenerativeAI(
             model=model_name,
@@ -66,8 +66,7 @@ def get_llm(model_name, api_key, **kwargs):
         return ChatOpenAI(model=model_name, **config)
 
     elif model_name in ["deepseek/deepseek-r1:free", "deepseek/deepseek-r1-distill-llama-70b:free","deepseek/deepseek-chat", "deepseek/deepseek-chat-v3-0324:free",
-                        "google/gemini-2.5-pro-exp-03-25:free","google/gemini-2.0-pro-exp-02-05:free",
-                        "qwen/qwq-32b:free", "google/gemma-3-27b-it:free","meta-llama/llama-4-scout:free"]:
+                        "qwen/qwq-32b:free", "google/gemma-3-27b-it:free"]:
         config = common_config.copy()
         config.update({
             "base_url": "https://openrouter.ai/api/v1",

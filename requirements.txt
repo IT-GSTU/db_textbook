@@ -1,7 +1,0 @@
-langchain
-langgraph
-langchain-ollama
-langsmith
-langchain-openai
-langchain_community
-duckduckgo-search

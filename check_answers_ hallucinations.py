@@ -14,7 +14,7 @@ DEEPSEEK_API_KEY = os.environ.get("DEEPSEEK_API_KEY")
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY")
 
 if not HF_API_KEY or not GOOGLE_API_KEY or not DEEPSEEK_API_KEY or not OPENROUTER_API_KEY:
-    raise ValueError("Необходимо установить все переменные окружения: HF_API_KEY, GOOGLE_API_KEY, DEEPSEEK_API_KEY, OPENROUTER_API_KEY")
+    raise ValueError("Необходимо установить переменные окружения: HF_API_KEY, GOOGLE_API_KEY, DEEPSEEK_API_KEY, OPENROUTER_API_KEY")
 
 media = "results/"  # Или укажите другой путь, например, Path("./data")
 file_name="qwen_qwq-32b_free_book_0_log"
@@ -36,8 +36,7 @@ if check:
 # Выбор LLM для проверки ответов
 # Список LLM
 model_list = [
-    {"model_name": "models/gemini-2.5-flash-preview-04-17", "api_key": GOOGLE_API_KEY},
-    {"model_name": "gemini-2.5-pro-exp-03-25", "api_key": GOOGLE_API_KEY},   
+    {"model_name": "models/gemini-2.5", "api_key": GOOGLE_API_KEY},
     {"model_name": "deepseek-chat", "api_key": DEEPSEEK_API_KEY},
     {"model_name": "deepseek-reasoner", "api_key": DEEPSEEK_API_KEY},
     {"model_name": "deepseek/deepseek-chat", "api_key": OPENROUTER_API_KEY},
